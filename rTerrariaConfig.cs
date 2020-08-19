@@ -15,5 +15,10 @@ namespace rterrariamod
         [Label("Toggles the Skeleton immunity effect given by some accessories")]
         [DefaultValue(true)]
         public bool skeletonImmunityConfig;
+
+        if (whatconfig)
+            return;
+        if (skeletonImmunityConfig)
+            return;
     }
 }

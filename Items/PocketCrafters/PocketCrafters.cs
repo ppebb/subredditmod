@@ -1,5 +1,3 @@
-﻿using IL.Terraria.GameContent.UI;
-using System.Runtime.InteropServices;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

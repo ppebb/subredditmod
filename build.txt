@@ -1,0 +1,3 @@
+displayName = r/Terraria Mod
+author = pollen__
+version = 0.1

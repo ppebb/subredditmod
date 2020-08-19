@@ -13,7 +13,13 @@ namespace rterrariamod
 		{
 			Nokia3310Recall = RegisterHotKey("Quick Recall (Works With Nokia 3310)", "Home");
 		}
-
+		public override void Unload()
+		{
+			if (whatconfig)
+				return null;
+			if (skeletonImmunityConfig)
+				return null;
+		}
 		public override void AddRecipeGroups()
 		{
 			RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "Any Evil Helmet", new int[]

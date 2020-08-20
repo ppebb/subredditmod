@@ -13,13 +13,12 @@ namespace rterrariamod
 		{
 			Nokia3310Recall = RegisterHotKey("Quick Recall (Works With Nokia 3310)", "Home");
 		}
+
 		public override void Unload()
 		{
-			if (whatconfig)
-				return null;
-			if (skeletonImmunityConfig)
-				return null;
+			Nokia3310Recall = null;
 		}
+
 		public override void AddRecipeGroups()
 		{
 			RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "Any Evil Helmet", new int[]
@@ -86,9 +85,10 @@ namespace rterrariamod
 		public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {
 			ModConfig config = ModContent.GetInstance<rTerrariaModConfig>();
+			Player player = Main.player[Main.myPlayer];
 			if (config == null)
 				return;
-			if (Main.dayTime && !Main.player[Main.myPlayer].ZoneHoly && ModContent.GetInstance<rTerrariaModConfig>().whatconfig)
+			if (Main.dayTime && player.GetModPlayer<Rterrariaplayer>().PlayerIsInForest(player) && ModContent.GetInstance<rTerrariaModConfig>().whatconfig)
 			{
 				music = GetSoundSlot(SoundType.Music, "Sounds/Music/what");
 				priority = MusicPriority.BiomeLow;

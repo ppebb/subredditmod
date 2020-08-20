@@ -35,21 +35,7 @@ namespace rterrariamod
 		public float projRunSlowdown = 0.2f;
         public float projAccRunSpeed;
         public float projMaxFallSpeed = 10f;
-        public bool PlayerIsInForest(Player player)
-        {
-            return !player.ZoneJungle
-                && !player.ZoneDungeon
-                && !player.ZoneCorrupt
-                && !player.ZoneCrimson
-                && !player.ZoneHoly
-                && !player.ZoneSnow
-                && !player.ZoneUndergroundDesert
-                && !player.ZoneGlowshroom
-                && !player.ZoneMeteor
-                && !player.ZoneBeach
-                && !player.ZoneDesert
-                && player.ZoneOverworldHeight;
-        }
+
         public override void ResetEffects()
         {
             HeartLocketSummon = false;

@@ -9,6 +9,7 @@ namespace rterrariamod
 	public class Rterrariamod : Mod
 	{
 		public static ModHotKey Nokia3310Recall;
+
 		public override void Load()
 		{
 			Nokia3310Recall = RegisterHotKey("Quick Recall (Works With Nokia 3310)", "Home");
@@ -84,11 +85,10 @@ namespace rterrariamod
 		}
 		public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {
-			ModConfig config = ModContent.GetInstance<rTerrariaModConfig>();
 			Player player = Main.player[Main.myPlayer];
-			if (config == null)
+			if (ModContent.GetInstance<rTerrariaModConfig>() == null)
 				return;
-			if (Main.dayTime && player.GetModPlayer<Rterrariaplayer>().PlayerIsInForest(player) && ModContent.GetInstance<rTerrariaModConfig>().whatconfig)
+			if (Main.dayTime && !player.ZoneBeach && !player.ZoneHoly && player.ZoneOverworldHeight && ModContent.GetInstance<rTerrariaModConfig>().whatconfig)
 			{
 				music = GetSoundSlot(SoundType.Music, "Sounds/Music/what");
 				priority = MusicPriority.BiomeLow;

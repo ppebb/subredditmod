@@ -43,7 +43,7 @@ namespace rterrariamod
             BeeHiveMini = false;
             IdolMoth = false;
             player.statManaMax2 += manaFruits * 10;
-            projJumpSpeed = 8.01f;
+            projJumpSpeed = 8.51f;
             projMaxRunSpeed = 3f;
             projRunAcceleration = 0.08f;
             projRunSlowdown = 0.2f;

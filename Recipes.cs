@@ -1,7 +1,9 @@
-﻿using Terraria.ID;
+﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using rterrariamod.Items;
 using rterrariamod.Items.Armor;
+using rterrariamod.Items.Tools;
 using rterrariamod.Items.Accessories;
 using rterrariamod.Items.PocketCrafters;
 using static Terraria.ModLoader.ModContent;
@@ -12,6 +14,7 @@ namespace rterrariamod
     {
         public static void AddRecipes()
         {
+            Player player = Main.player[Main.myPlayer];
             //Accessories
 
             ModRecipe recipe = new ModRecipe(GetInstance<Rterrariamod>());
@@ -195,6 +198,16 @@ namespace rterrariamod
             recipe.AddRecipe();
 
             //Items
+
+            if (player.ZoneHoly)
+            {
+                recipe = new ModRecipe(GetInstance<Rterrariamod>());
+                recipe.AddIngredient(ItemID.Pwnhammer, 1);
+                recipe.AddIngredient(ItemID.PurificationPowder, 20);
+                recipe.AddTile(TileID.MythrilAnvil);
+                recipe.SetResult(ItemType<PurifiedHammer>());
+                recipe.AddRecipe();
+            }
 
             recipe = new ModRecipe(GetInstance<Rterrariamod>());
             recipe.AddIngredient(ItemID.BeeWax, 3);

@@ -1,7 +1,7 @@
 displayName = r/Terraria Mod
-author = pollen__ & duck goes woof
+author = pollen__ duck goes woof RighteousRyan
 version = 0.1
-homepage = https://github.com/pollen00/subredditmod/
+homepage = https://github.com/41D4N/subredditmod
 hideCode = false
 hideResources = false
 includeSource = true

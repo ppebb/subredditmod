@@ -38,11 +38,14 @@ namespace rterrariamod.Projectiles.Summons
         #region Public Variables
         public int frameCounter = 0;
         public int frameMultiplier = 6;
+        public int balloonCounter = 0;
+        public int balloonMultiplier = 0;
         public SpriteEffects spriteDirection;
         public Vector2 drawCenter = new Vector2(22f, 18f);
         public Vector2 hairOffset = new Vector2(22f, 18f);
         public Rectangle defaultframe = new Rectangle(0, 0, 40, 56);
         public Rectangle hairframe = new Rectangle(0, 0, 40, 56);
+        public Rectangle balloonframe = new Rectangle(0, 0, 56, 56);
         #endregion
         public override void AI()
         {
@@ -406,7 +409,7 @@ namespace rterrariamod.Projectiles.Summons
             #endregion
 
             #region Jump & StepUp
-            if (floorCheckBool && shouldJump)
+            if (floorCheckBool && shouldJump && distanceToIdlePosition > 96)
                 projectile.velocity.Y = 0f - modPlayer.projJumpSpeed;
 
             if (floorCheckBool || projectile.wet)
@@ -427,6 +430,15 @@ namespace rterrariamod.Projectiles.Summons
             #endregion
 
             #region Animation
+            balloonCounter++;
+            if (balloonCounter > 6)
+            {
+                balloonMultiplier++;
+                balloonCounter = 0;
+                if (balloonMultiplier > 5)
+                    balloonMultiplier = 0;
+            }
+            balloonframe = new Rectangle(0, 56 * balloonMultiplier, 56, 56);
             if (projectile.velocity.X < 0)
             {
                 spriteDirection = SpriteEffects.FlipHorizontally;
@@ -470,7 +482,7 @@ namespace rterrariamod.Projectiles.Summons
                     defaultframe = new Rectangle(0, 56 * frameMultiplier, 40, 56);
                     hairframe = new Rectangle(0, 56 * (frameMultiplier - 6), 40, 56);
                 }
-                if (frameMultiplier >= 19 && frameCounter >= 3)
+                if (frameMultiplier >= 19 && frameCounter >= 5)
                     frameMultiplier = 6;
                 if (frameMultiplier > 19)
                     frameMultiplier = 6;
@@ -489,39 +501,58 @@ namespace rterrariamod.Projectiles.Summons
             Vector2 drawPos = projectile.Top - Main.screenPosition;
             int skinVariant = player.skinVariant;
             Color lighting = Lighting.GetColor((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16);
-            Color skinColor = Lighting.GetColor((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, player.skinColor);
-            Color eyeColor = lighting.MultiplyRGBA(player.eyeColor);
+            Color eyeColor = Lighting.GetColor((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, player.eyeColor);
             Color hairColor = lighting.MultiplyRGBA(player.hairColor);
-            Color pantsColor = lighting.MultiplyRGBA(player.pantsColor);
-            Color shoeColor = lighting.MultiplyRGBA(player.shoeColor);
-            Color shirtColor = lighting.MultiplyRGBA(player.shirtColor);
-            Color underShirtColor = lighting.MultiplyRGBA(player.underShirtColor);
-            Color eyeWhites = lighting.MultiplyRGBA(Color.White);
-            Rectangle test = new Rectangle(0, 0, 56, 56);
-            Vector2 balloonOffset = new Vector2(-20, 18);
-            if (player.balloon > 0 && player.balloon < 18)
-                notSpriteBatch.Draw(Main.accBalloonTexture[player.balloon], drawPos, test, lighting, 0f, balloonOffset, 1f, spriteDirection, 1f);
+            Color eyeWhites = Lighting.GetColor((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, Color.White);
+            Color skinColor = Lighting.GetColor((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, player.skinColor);
+            Color shirtColor = Lighting.GetColor((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, player.shirtColor);
+            Color underShirtColor = Lighting.GetColor((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, player.underShirtColor);
+            Color pantsColor = Lighting.GetColor((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, player.pantsColor);
+            Color shoeColor = Lighting.GetColor((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, player.shoeColor);
+            Vector2 balloonOffset = new Vector2(28, 18);
+            if (player.back > 0 && player.back < Main.accBackTexture.Length && Main.accBackLoaded[player.back])
+                notSpriteBatch.Draw(Main.accBackTexture[player.back], drawPos, defaultframe, lighting, 0f, hairOffset, 1f, spriteDirection, 1f);
+            if (player.wings > 0 && player.wings < Main.wingsTexture.Length && Main.wingsLoaded[player.wings])
+                notSpriteBatch.Draw(Main.wingsTexture[player.wings], drawPos, defaultframe, lighting, 0f, hairOffset, 1f, spriteDirection, 1f);
+            if (player.balloon > 0 && player.balloon < Main.accBalloonTexture.Length)
+               notSpriteBatch.Draw(Main.accBalloonTexture[player.balloon], drawPos, balloonframe, lighting, 0f, balloonOffset, 1f, spriteDirection, 1f);
+            notSpriteBatch.Draw(Main.playerTextures[0, 3], drawPos, defaultframe, skinColor, 0f, drawCenter, 1f, spriteDirection, 1f);
             notSpriteBatch.Draw(Main.playerTextures[0, 0], drawPos, defaultframe, skinColor, 0f, drawCenter, 1f, spriteDirection, 1f);
             notSpriteBatch.Draw(Main.playerTextures[0, 1], drawPos, defaultframe, eyeWhites, 0f, drawCenter, 1f, spriteDirection, 1f);
             notSpriteBatch.Draw(Main.playerTextures[0, 2], drawPos, defaultframe, eyeColor, 0f, drawCenter, 1f, spriteDirection, 1f);
             notSpriteBatch.Draw(Main.playerHairTexture[player.hair], drawPos, hairframe, hairColor, 0f, hairOffset, 1f, spriteDirection, 1f);
+            if (player.face > 0 && player.face < Main.accFaceTexture.Length && Main.accFaceLoaded[player.face])
+                notSpriteBatch.Draw(Main.accFaceTexture[player.face], drawPos, defaultframe, lighting, 0f, hairOffset, 1f, spriteDirection, 1f);
             if (skinVariant == 4 || skinVariant == 9)
                 notSpriteBatch.Draw(Main.playerTextures[4, 10], drawPos, defaultframe, skinColor, 0f, drawCenter, 1f, spriteDirection, 1f);
             if (skinVariant == 8)
                 notSpriteBatch.Draw(Main.playerTextures[0, 10], drawPos, defaultframe, skinColor, 0f, drawCenter, 1f, spriteDirection, 1f);
-            notSpriteBatch.Draw(Main.playerTextures[0, 3], drawPos, defaultframe, skinColor, 0f, drawCenter, 1f, spriteDirection, 1f);
             notSpriteBatch.Draw(Main.playerTextures[skinVariant, 4], drawPos, defaultframe, underShirtColor, 0f, drawCenter, 1f, spriteDirection, 1f);
             notSpriteBatch.Draw(Main.playerTextures[skinVariant, 6], drawPos, defaultframe, shirtColor, 0f, drawCenter, 1f, spriteDirection, 1f);
             notSpriteBatch.Draw(Main.playerTextures[0, 7], drawPos, defaultframe, skinColor, 0f, drawCenter, 1f, spriteDirection, 1f);
             notSpriteBatch.Draw(Main.playerTextures[skinVariant, 8], drawPos, defaultframe, underShirtColor, 0f, drawCenter, 1f, spriteDirection, 1f);
+            if (player.shield > 0 && player.shield < Main.accShieldTexture.Length && Main.accShieldLoaded[player.shield])
+                notSpriteBatch.Draw(Main.accShieldTexture[player.shield], drawPos, defaultframe, lighting, 0f, hairOffset, 1f, spriteDirection, 1f);
             notSpriteBatch.Draw(Main.playerTextures[skinVariant, 11], drawPos, defaultframe, pantsColor, 0f, drawCenter, 1f, spriteDirection, 1f);
             notSpriteBatch.Draw(Main.playerTextures[skinVariant, 12], drawPos, defaultframe, shoeColor, 0f, drawCenter, 1f, spriteDirection, 1f);
+            if (player.shoe > 0 && player.shoe < Main.accShoesTexture.Length && Main.accShoesLoaded[player.shoe])
+                notSpriteBatch.Draw(Main.accShoesTexture[player.shoe], drawPos, defaultframe, lighting, 0f, hairOffset, 1f, spriteDirection, 1f);
+            if (player.handoff > 0 && player.handoff < Main.accHandsOffTexture.Length && Main.accHandsOffLoaded[player.handoff])
+                notSpriteBatch.Draw(Main.accHandsOffTexture[player.handoff], drawPos, defaultframe, lighting, 0f, hairOffset, 1f, spriteDirection, 1f);
+            if (player.neck > 0 && player.neck < Main.accNeckTexture.Length && Main.accNeckLoaded[player.handoff])
+                notSpriteBatch.Draw(Main.accNeckTexture[player.neck], drawPos, defaultframe, lighting, 0f, hairOffset, 1f, spriteDirection, 1f);
+            if (player.waist > 0 && player.waist < Main.accWaistTexture.Length && Main.accWaistLoaded[player.waist])
+                notSpriteBatch.Draw(Main.accWaistTexture[player.waist], drawPos, defaultframe, lighting, 0f, hairOffset, 1f, spriteDirection, 1f);
             if (skinVariant == 2 || skinVariant == 3 || skinVariant == 4 || skinVariant == 6 || skinVariant == 7 || skinVariant == 8 || skinVariant == 9)
             {
                 notSpriteBatch.Draw(Main.playerTextures[skinVariant, 13], drawPos, defaultframe, shirtColor, 0f, drawCenter, 1f, spriteDirection, 1f);
                 if (skinVariant == 3 || skinVariant == 7 || skinVariant == 8)
                     notSpriteBatch.Draw(Main.playerTextures[skinVariant, 14], drawPos, defaultframe, shirtColor, 0f, drawCenter, 1f, spriteDirection, 1f);
             }
+            if (player.handon > 0 && player.handon < Main.accHandsOnTexture.Length && Main.accHandsOnLoaded[player.handon])
+                notSpriteBatch.Draw(Main.accHandsOnTexture[player.handon], drawPos, defaultframe, lighting, 0f, hairOffset, 1f, spriteDirection, 1f);
+            if (player.front > 0 && player.front < Main.accHandsOnTexture.Length && Main.accFrontLoaded[player.front])
+                notSpriteBatch.Draw(Main.accFrontTexture[player.front], drawPos, defaultframe, lighting, 0f, hairOffset, 1f, spriteDirection, 1f);
             return true;
         }
     }

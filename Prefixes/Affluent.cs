@@ -5,7 +5,7 @@ namespace rterrariamod.Prefixes
 {
     public class Affluent : ModPrefix
     {
-        public override float RollChance(Item item)  
+        public override float RollChance(Item item)
             => 1f;
 
         public override bool CanRoll(Item item)

@@ -17,7 +17,7 @@ namespace rterrariamod.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.buffTime[buffIndex] = 18000;
-            player.GetModPlayer<Rterrariaplayer>().HeartLocketSummon = true;
+            player.GetModPlayer<RTerrariaPlayer>().HeartLocketSummon = true;
             bool petProjectileNotSpawned = player.ownedProjectileCounts[ProjectileType<HeartLocketSummon>()] <= 0;
             if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
             {

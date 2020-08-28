@@ -8,7 +8,7 @@ using rterrariamod.Items.PocketCrafters;
 
 namespace rterrariamod
 {
-    public class Rterrariaplayer : ModPlayer
+    public class RTerrariaPlayer : ModPlayer
     {
         // TODO: Hammer radial menu
         public int beespawncount;
@@ -28,6 +28,7 @@ namespace rterrariamod
         public bool projSlippy2 = false;
         public bool projWindPushed = false;
         public bool lRHoney = false;
+        public bool longHair = false;
         public float projGravity = 0.4f;
 		public float projJumpSpeed = 5.01f;
 		public float projMaxRunSpeed = 3f;
@@ -54,6 +55,7 @@ namespace rterrariamod
             projSlippy2 = false;
             projWindPushed = false;
             lRHoney = false;
+            longHair = false;
         }
 
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
@@ -79,10 +81,10 @@ namespace rterrariamod
         {
             beedelay++;
             mothdelay++;
-            //if (player.HasItem(ModContent.ItemType<PocketCrystalBall>()))
-            //{
-            //    player.AddBuff(BuffID.Clairvoyance, 2);
-            //}
+            if (player.HasItem(ModContent.ItemType<PocketCrystalBall>()))
+            {
+                player.AddBuff(BuffID.Clairvoyance, 2);
+            }
             if (startcounting)
             {
                 delay2++;
@@ -130,7 +132,7 @@ namespace rterrariamod
 
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (Rterrariamod.Nokia3310Recall.JustPressed && (NokiaRecall || player.HasItem(ItemID.RecallPotion) || player.HasItem(ItemID.MagicMirror) || player.HasItem(ItemID.IceMirror) || player.HasItem(ItemID.CellPhone)))
+            if (RTerrariaMod.Nokia3310Recall.JustPressed && (NokiaRecall || player.HasItem(ItemID.RecallPotion) || player.HasItem(ItemID.MagicMirror) || player.HasItem(ItemID.IceMirror) || player.HasItem(ItemID.CellPhone)))
             {
                 if (delay >= 90)
                 {

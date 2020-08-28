@@ -189,7 +189,7 @@ namespace rterrariamod.Items.PocketCrafters
         }
     }
 
-    /*public class PocketTinkerersWorkshop : ModItem
+    public class PocketTinkerersWorkshop : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -493,5 +493,5 @@ namespace rterrariamod.Items.PocketCrafters
             item.value = Item.sellPrice(gold: 20);
             item.rare = ItemRarityID.LightRed;
         }
-    }*/
+    }
 }

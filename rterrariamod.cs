@@ -2,20 +2,30 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using Terraria.ModLoader.Config;
+using System;
 
 namespace rterrariamod
 {
-	public class Rterrariamod : Mod
+	public class RTerrariaMod : Mod
 	{
 		public static ModHotKey Nokia3310Recall;
 
 		public override void Load()
 		{
 			Nokia3310Recall = RegisterHotKey("Quick Recall (Works With Nokia 3310)", "Home");
+			Player player = Main.player[Main.myPlayer];
+			if (player.GetModPlayer<RTerrariaPlayer>().manaFruits > 1)
+				On.Terraria.Main.DrawInterface_Resources_Mana += ManaFruitUI;
+
+
 		}
 
-		public override void Unload()
+        private void ManaFruitUI(On.Terraria.Main.orig_DrawInterface_Resources_Mana orig)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Unload()
 		{
 			Nokia3310Recall = null;
 		}

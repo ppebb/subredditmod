@@ -15,12 +15,13 @@ namespace rterrariamod.Items
         {
             item.width = 69;
             item.height = 69;
+            item.maxStack = 999;
             item.value = Item.sellPrice(silver: 35);
             item.rare = ItemRarityID.LightRed;
         }
     }
 
-    public class CorruptBits : ModItem
+    public class CorruptBits : AltarBits
     {
         public override void SetStaticDefaults()
         {
@@ -28,7 +29,7 @@ namespace rterrariamod.Items
         }
     }
 
-    public class CrimsonBits : ModItem
+    public class CrimsonBits : AltarBits
     {
         public override void SetStaticDefaults()
         {

@@ -220,8 +220,7 @@ namespace rterrariamod.Items.Accessories
             player.buffImmune[47] = true; // Frozen
             player.buffImmune[70] = true; // Venom
             player.buffImmune[80] = true; // Blackout
-            player.buffImmune[80] = true; // Blackout
-            player.GetModPlayer<Rterrariaplayer>().NokiaRecall = true;
+            player.GetModPlayer<RTerrariaPlayer>().NokiaRecall = true;
         }
 
         public override void UpdateInventory(Player player)
@@ -238,7 +237,7 @@ namespace rterrariamod.Items.Accessories
             player.accStopwatch = true;
             player.accOreFinder = true;
             player.accDreamCatcher = true;
-            player.GetModPlayer<Rterrariaplayer>().NokiaRecall = true;
+            player.GetModPlayer<RTerrariaPlayer>().NokiaRecall = true;
         }
     }
 
@@ -345,7 +344,7 @@ namespace rterrariamod.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.maxMinions += 1;
-            player.GetModPlayer<Rterrariaplayer>().BeeHiveMini = true;
+            player.GetModPlayer<RTerrariaPlayer>().BeeHiveMini = true;
         }
     }
 
@@ -392,7 +391,7 @@ namespace rterrariamod.Items.Accessories
         {
             player.maxMinions += 1;
             player.minionDamage += .05f;
-            player.GetModPlayer<Rterrariaplayer>().BeeHiveMini = true;
+            player.GetModPlayer<RTerrariaPlayer>().BeeHiveMini = true;
         }
     }
 
@@ -416,7 +415,7 @@ namespace rterrariamod.Items.Accessories
         {
             player.maxMinions += 2;
             player.minionDamage += .15f;
-            player.GetModPlayer<Rterrariaplayer>().IdolMoth = true;
+            player.GetModPlayer<RTerrariaPlayer>().IdolMoth = true;
         }
     }
 

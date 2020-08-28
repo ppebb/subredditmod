@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using rterrariamod.Prefixes;
 using rterrariamod.Items.Accessories;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace rterrariamod
 {
@@ -47,6 +48,19 @@ namespace rterrariamod
                     isModifier = true
                 };
                 tooltips.Add(line);
+            }
+            if (item.type == ItemID.CrystalBall)
+            {
+                TooltipLine line = new TooltipLine(mod, "GrindUp", "Can be ground up in a mortar")
+                {
+                    overrideColor = Color.White
+                };
+                //TooltipLine line2 = new TooltipLine(mod, "ItemName", "CrystalBall")
+                //{
+                //    overrideColor = Color.Black
+                //};
+                tooltips.Add(line);
+                //tooltips.Add(line2);
             }
         }
     }

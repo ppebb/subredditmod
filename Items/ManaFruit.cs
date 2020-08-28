@@ -14,8 +14,8 @@ namespace rterrariamod.Items
 
         public override void SetDefaults()
         {
-            item.width = 18;
-            item.height = 18;
+            item.width = 26;
+            item.height = 26;
             item.maxStack = 99;
             item.consumable = true;
             item.useStyle = ItemUseStyleID.HoldingUp;
@@ -29,7 +29,7 @@ namespace rterrariamod.Items
 
         public override bool CanUseItem(Player player)
         {
-            return player.statManaMax == 200 && player.GetModPlayer<Rterrariaplayer>().manaFruits < Rterrariaplayer.maxManaFruits;
+            return player.statManaMax == 200 && player.GetModPlayer<RTerrariaPlayer>().manaFruits < RTerrariaPlayer.maxManaFruits;
         }
 
         public override bool UseItem(Player player)
@@ -40,7 +40,7 @@ namespace rterrariamod.Items
             {
                 player.ManaEffect(10);
             }
-            player.GetModPlayer<Rterrariaplayer>().manaFruits += 1;
+            player.GetModPlayer<RTerrariaPlayer>().manaFruits += 1;
             return true;
         }
     }

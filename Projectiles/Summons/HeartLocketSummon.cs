@@ -4,7 +4,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Graphics.Shaders;
-using System.Diagnostics;
 
 namespace rterrariamod.Projectiles.Summons
 {
@@ -51,7 +50,7 @@ namespace rterrariamod.Projectiles.Summons
         {
             #region Active Check
             Player player = Main.player[projectile.owner];
-            Rterrariaplayer modPlayer = player.GetModPlayer<Rterrariaplayer>();
+            RTerrariaPlayer modPlayer = player.GetModPlayer<RTerrariaPlayer>();
             if (player.dead)
                 modPlayer.HeartLocketSummon = false;
             if (modPlayer.HeartLocketSummon)
@@ -483,8 +482,6 @@ namespace rterrariamod.Projectiles.Summons
                     hairframe = new Rectangle(0, 56 * (frameMultiplier - 6), 40, 56);
                 }
                 if (frameMultiplier >= 19 && frameCounter >= 5)
-                    frameMultiplier = 6;
-                if (frameMultiplier > 19)
                     frameMultiplier = 6;
                 if (distanceToIdlePosition < 96 && (modPlayer.projSlippy || modPlayer.projSlippy2 || modPlayer.projWindPushed))
                 {

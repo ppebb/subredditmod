@@ -1,29 +1,22 @@
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using System;
+using static Terraria.ModLoader.ModContent;
 
 namespace rterrariamod
 {
-	public class RTerrariaMod : Mod
+	public partial class RTerrariaMod : Mod
 	{
 		public static ModHotKey Nokia3310Recall;
-
+		public static SpriteBatch spriteBatch = Main.spriteBatch;
+		public int UI_ScreenAnchorX = Main.screenWidth - 800;
 		public override void Load()
 		{
 			Nokia3310Recall = RegisterHotKey("Quick Recall (Works With Nokia 3310)", "Home");
-			Player player = Main.player[Main.myPlayer];
-			if (player.GetModPlayer<RTerrariaPlayer>().manaFruits > 1)
-				On.Terraria.Main.DrawInterface_Resources_Mana += ManaFruitUI;
-
-
+			InitializeMethodSwaps();
 		}
-
-        private void ManaFruitUI(On.Terraria.Main.orig_DrawInterface_Resources_Mana orig)
-        {
-            throw new NotImplementedException();
-        }
 
         public override void Unload()
 		{
@@ -96,9 +89,9 @@ namespace rterrariamod
 		public override void UpdateMusic(ref int music, ref MusicPriority priority)
         {
 			Player player = Main.player[Main.myPlayer];
-			if (ModContent.GetInstance<rTerrariaModConfig>() == null)
+			if (GetInstance<rTerrariaModConfig>() == null)
 				return;
-			if (Main.dayTime && !player.ZoneBeach && !player.ZoneHoly && player.ZoneOverworldHeight && ModContent.GetInstance<rTerrariaModConfig>().whatconfig)
+			if (Main.dayTime && !player.ZoneBeach && !player.ZoneHoly && player.ZoneOverworldHeight && GetInstance<rTerrariaModConfig>().whatconfig)
 			{
 				music = GetSoundSlot(SoundType.Music, "Sounds/Music/what");
 				priority = MusicPriority.BiomeLow;

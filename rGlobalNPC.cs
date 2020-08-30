@@ -2,7 +2,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using rterrariamod.Items;
-using IL.Terraria.Server;
 
 namespace rterrariamod
 {

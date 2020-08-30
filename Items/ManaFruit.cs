@@ -24,7 +24,6 @@ namespace rterrariamod.Items
             item.useAnimation = 30;
             item.rare = ItemRarityID.Lime;
             item.value = Item.sellPrice(gold: 2);
-            item.color = Color.Purple;
         }
 
         public override bool CanUseItem(Player player)

@@ -14,8 +14,8 @@ namespace rterrariamod
 			int maxValue = 20;
 				if (Main.expertMode)
 				maxValue = 30;
-            float num3 = 1.5E-05f * (float)Main.worldRate;
-			for (int num62 = 0; (float)num62 < (float)(Main.maxTilesX * Main.maxTilesY) * num3; num62++)
+            float num3 = 1.5E-05f * Main.worldRate;
+			for (int num62 = 0; num62 < (Main.maxTilesX * Main.maxTilesY) * num3; num62++)
 			{
 				int num63 = WorldGen.genRand.Next(10, Main.maxTilesX - 10);
 				int num64 = WorldGen.genRand.Next((int)Main.worldSurface - 1, Main.maxTilesY - 20);

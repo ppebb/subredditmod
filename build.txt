@@ -1,8 +1,8 @@
 displayName = r/Terraria Mod
-author = pollen__ duck goes woof RighteousRyan
+author = pollen__
 version = 0.1
 homepage = https://github.com/41D4N/subredditmod
 hideCode = false
-hideResources = false
+hideResources = true
 includeSource = true
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*

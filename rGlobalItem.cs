@@ -55,12 +55,7 @@ namespace rterrariamod
                 {
                     overrideColor = Color.White
                 };
-                //TooltipLine line2 = new TooltipLine(mod, "ItemName", "CrystalBall")
-                //{
-                //    overrideColor = Color.Black
-                //};
                 tooltips.Add(line);
-                //tooltips.Add(line2);
             }
         }
     }

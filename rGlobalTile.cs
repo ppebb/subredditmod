@@ -15,7 +15,7 @@ namespace rterrariamod
         public override void MouseOver(int i, int j, int type)
         {
             Tile mouseTile = Framing.GetTileSafely(Main.MouseWorld.ToTileCoordinates());
-            if (mouseTile.type == ModContent.TileType<MortarAndPestleTile>())
+            if (mouseTile.type == TileType<MortarAndPestleTile>())
             {
                 Player player = Main.LocalPlayer;
                 if (player.HeldItem.type == ItemID.CrystalBall)

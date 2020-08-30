@@ -9,6 +9,38 @@ namespace rterrariamod.Projectiles.Summons
 {
     public class HeartLocketSummon : ModProjectile
     {
+        public static Vector2[] OffsetsPlayerOffhand = new Vector2[20] {
+            new Vector2(14f, 20f),
+            new Vector2(14f, 20f),
+            new Vector2(14f, 20f),
+            new Vector2(14f, 18f),
+            new Vector2(14f, 20f),
+            new Vector2(16f, 4f),
+            new Vector2(16f, 16f),
+            new Vector2(18f, 14f),
+            new Vector2(18f, 14f),
+            new Vector2(18f, 14f),
+            new Vector2(16f, 16f),
+            new Vector2(16f, 16f),
+            new Vector2(16f, 16f),
+            new Vector2(16f, 16f),
+            new Vector2(14f, 14f),
+            new Vector2(14f, 14f),
+            new Vector2(12f, 14f),
+            new Vector2(14f, 16f),
+            new Vector2(16f, 16f),
+            new Vector2(16f, 16f)
+        };
+        public int frameCounter = 0;
+        public int frameMultiplier = 6;
+        public int balloonCounter = 0;
+        public int balloonMultiplier = 0;
+        public SpriteEffects spriteDirection;
+        public Vector2 drawCenter = new Vector2(22f, 18f);
+        public Vector2 hairOffset = new Vector2(22f, 18f);
+        public Rectangle defaultframe = new Rectangle(0, 0, 40, 56);
+        public Rectangle hairframe = new Rectangle(0, 0, 40, 56);
+        public Rectangle balloonframe = new Rectangle(0, 0, 56, 56);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Clone");
@@ -34,18 +66,6 @@ namespace rterrariamod.Projectiles.Summons
         {
             return true;
         }
-        #region Public Variables
-        public int frameCounter = 0;
-        public int frameMultiplier = 6;
-        public int balloonCounter = 0;
-        public int balloonMultiplier = 0;
-        public SpriteEffects spriteDirection;
-        public Vector2 drawCenter = new Vector2(22f, 18f);
-        public Vector2 hairOffset = new Vector2(22f, 18f);
-        public Rectangle defaultframe = new Rectangle(0, 0, 40, 56);
-        public Rectangle hairframe = new Rectangle(0, 0, 40, 56);
-        public Rectangle balloonframe = new Rectangle(0, 0, 56, 56);
-        #endregion
         public override void AI()
         {
             #region Active Check
@@ -430,14 +450,14 @@ namespace rterrariamod.Projectiles.Summons
 
             #region Animation
             balloonCounter++;
-            if (balloonCounter > 6)
+            if (balloonCounter > 14)
             {
                 balloonMultiplier++;
                 balloonCounter = 0;
-                if (balloonMultiplier > 5)
-                    balloonMultiplier = 0;
             }
             balloonframe = new Rectangle(0, 56 * balloonMultiplier, 56, 56);
+            if (balloonMultiplier > 3)
+                balloonMultiplier = 0;
             if (projectile.velocity.X < 0)
             {
                 spriteDirection = SpriteEffects.FlipHorizontally;
@@ -506,13 +526,14 @@ namespace rterrariamod.Projectiles.Summons
             Color underShirtColor = Lighting.GetColor((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, player.underShirtColor);
             Color pantsColor = Lighting.GetColor((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, player.pantsColor);
             Color shoeColor = Lighting.GetColor((int)projectile.Center.X / 16, (int)projectile.Center.Y / 16, player.shoeColor);
-            Vector2 balloonOffset = new Vector2(28, 18);
+            Vector2 balloonOffset = new Vector2(28, 22);
+            Vector2 balloonPosition = OffsetsPlayerOffhand[defaultframe.Y / 56];
             if (player.back > 0 && player.back < Main.accBackTexture.Length && Main.accBackLoaded[player.back])
                 notSpriteBatch.Draw(Main.accBackTexture[player.back], drawPos, defaultframe, lighting, 0f, hairOffset, 1f, spriteDirection, 1f);
             if (player.wings > 0 && player.wings < Main.wingsTexture.Length && Main.wingsLoaded[player.wings])
                 notSpriteBatch.Draw(Main.wingsTexture[player.wings], drawPos, defaultframe, lighting, 0f, hairOffset, 1f, spriteDirection, 1f);
             if (player.balloon > 0 && player.balloon < Main.accBalloonTexture.Length)
-               notSpriteBatch.Draw(Main.accBalloonTexture[player.balloon], drawPos, balloonframe, lighting, 0f, balloonOffset, 1f, spriteDirection, 1f);
+               notSpriteBatch.Draw(Main.accBalloonTexture[player.balloon], new Vector2((int)(drawPos.X + balloonPosition.X),(int)(drawPos.Y + balloonPosition.Y)), balloonframe, lighting, 0f, balloonOffset, 1f, spriteDirection, 1f);
             notSpriteBatch.Draw(Main.playerTextures[0, 3], drawPos, defaultframe, skinColor, 0f, drawCenter, 1f, spriteDirection, 1f);
             notSpriteBatch.Draw(Main.playerTextures[0, 0], drawPos, defaultframe, skinColor, 0f, drawCenter, 1f, spriteDirection, 1f);
             notSpriteBatch.Draw(Main.playerTextures[0, 1], drawPos, defaultframe, eyeWhites, 0f, drawCenter, 1f, spriteDirection, 1f);

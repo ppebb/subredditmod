@@ -134,6 +134,8 @@ namespace rterrariamod.Items.PocketCrafters
 
     public class PocketGlassKiln : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
+
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'A glass kiln, but in your pocket'");
@@ -150,6 +152,8 @@ namespace rterrariamod.Items.PocketCrafters
 
     public class PocketAlchemyTable : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
+
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'An alchemy table, but in your pocket'");
@@ -166,6 +170,8 @@ namespace rterrariamod.Items.PocketCrafters
 
     public abstract class PocketCookingPots : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
+
         public override void SetDefaults()
         {
             item.width = 69;
@@ -191,6 +197,7 @@ namespace rterrariamod.Items.PocketCrafters
 
     public class PocketTinkerersWorkshop : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pocket Tinkerer's Workshop");
@@ -208,6 +215,7 @@ namespace rterrariamod.Items.PocketCrafters
 
     public class PocketImbuingStation : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'An imbuing station, but in your pocket'");
@@ -224,6 +232,7 @@ namespace rterrariamod.Items.PocketCrafters
 
     public class PocketDyeVat : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'A dye vat, but in your pocket'");
@@ -240,6 +249,7 @@ namespace rterrariamod.Items.PocketCrafters
 
     public class PocketHeavyWorkBench : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'A heavy work bench, but in your pocket'");
@@ -255,6 +265,7 @@ namespace rterrariamod.Items.PocketCrafters
     }
     public class PocketCrimsonAltar : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'A crimson altar, but in your pocket'");
@@ -270,6 +281,7 @@ namespace rterrariamod.Items.PocketCrafters
     }
     public class PocketDemonAltar : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'A demon altar, but in your pocket'");
@@ -296,6 +308,7 @@ namespace rterrariamod.Items.PocketCrafters
     }
     public class PocketMythrilAnvil : PocketHMAnvils
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'A mythril anvil, but in your pocket'");
@@ -303,6 +316,7 @@ namespace rterrariamod.Items.PocketCrafters
     }
     public class PocketOrichalcumAnvil : PocketHMAnvils
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'An orichalcum anvil, but in your pocket'");
@@ -311,6 +325,7 @@ namespace rterrariamod.Items.PocketCrafters
 
     public abstract class PocketForges : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetDefaults()
         {
             item.width = 69;
@@ -336,6 +351,7 @@ namespace rterrariamod.Items.PocketCrafters
 
     public abstract class PocketBookcases : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'A bookcase, but in your pocket'");
@@ -343,8 +359,8 @@ namespace rterrariamod.Items.PocketCrafters
 
         public override void SetDefaults()
         {
-            item.width = 69;
-            item.height = 69;
+            item.width = 18;
+            item.height = 24;
             item.value = Item.sellPrice(gold: 3);
             item.rare = ItemRarityID.Red;
         }
@@ -352,8 +368,22 @@ namespace rterrariamod.Items.PocketCrafters
     public class PocketBookcase : PocketBookcases { }
     public class PocketBlueDungeonBookcase : PocketBookcases { }
     public class PocketGreenDungeonBookcase : PocketBookcases { }
-    public class PocketPinkDungeonBookcase : PocketBookcases { }
-    public class PocketObsidianBookcase : PocketBookcases { }
+    public class PocketPinkDungeonBookcase : PocketBookcases
+    {
+        public override void SetDefaults()
+        {
+            item.width = 18;
+            item.height = 22;
+        }
+    }
+    public class PocketObsidianBookcase : PocketBookcases
+    {
+        public override void SetDefaults()
+        {
+            item.width = 18;
+            item.height = 22;
+        }
+    }
     public class PocketGothicBookcase : PocketBookcases { }
     public class PocketCactusBookcase : PocketBookcases { }
     public class PocketEbonwoodBookcase : PocketBookcases { }
@@ -385,6 +415,7 @@ namespace rterrariamod.Items.PocketCrafters
 
     public class PocketCrystalBall : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Gives clairvoyance buff\n'A crystal ball, but in your pocket'");
@@ -401,6 +432,7 @@ namespace rterrariamod.Items.PocketCrafters
 
     public class PocketAutohammer : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'An autohammer, but in your pocket'");
@@ -417,6 +449,7 @@ namespace rterrariamod.Items.PocketCrafters
 
     public class PocketAncientManipulator : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'An ancient manipulator, but in your pocket'");
@@ -433,6 +466,7 @@ namespace rterrariamod.Items.PocketCrafters
 
     public class PocketKeg : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'A keg, but in your pocket'");
@@ -449,6 +483,7 @@ namespace rterrariamod.Items.PocketCrafters
 
     public class PocketBlendOMatic : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'A blend-o-matic, but in your pocket'");
@@ -465,6 +500,7 @@ namespace rterrariamod.Items.PocketCrafters
 
     public class PocketMeatGrinder : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'A meat grinder, but in your pocket'");
@@ -481,6 +517,7 @@ namespace rterrariamod.Items.PocketCrafters
 
     public class PocketFurnitureStation : ModItem
     {
+        public override string Texture => "rterrariamod/Items/PocketCrafters/PocketBookcase";
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("'The power to craft most furniture, in your pocket'");
